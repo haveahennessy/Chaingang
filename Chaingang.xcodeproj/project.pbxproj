@@ -9,7 +9,11 @@
 /* Begin PBXBuildFile section */
 		C59782AF1A423DB600C3139A /* Chaingang.h in Headers */ = {isa = PBXBuildFile; fileRef = C59782AE1A423DB600C3139A /* Chaingang.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C59782B51A423DB600C3139A /* Chaingang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59782A91A423DB600C3139A /* Chaingang.framework */; };
-		C59782BC1A423DB600C3139A /* ChaingangTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59782BB1A423DB600C3139A /* ChaingangTests.swift */; };
+		C59782C61A423DDE00C3139A /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59782C51A423DDE00C3139A /* Promise.swift */; };
+		C59782C81A423E0C00C3139A /* PromiseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59782C71A423E0C00C3139A /* PromiseTests.swift */; };
+		C59782CA1A423F7000C3139A /* LlamaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59782C91A423F7000C3139A /* LlamaKit.framework */; };
+		C59782CB1A423FA400C3139A /* LlamaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59782C91A423F7000C3139A /* LlamaKit.framework */; };
+		C59782CD1A423FBE00C3139A /* LlamaKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C59782C91A423F7000C3139A /* LlamaKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -22,13 +26,28 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		C59782CC1A423FB200C3139A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C59782CD1A423FBE00C3139A /* LlamaKit.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		C59782A91A423DB600C3139A /* Chaingang.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Chaingang.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C59782AD1A423DB600C3139A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C59782AE1A423DB600C3139A /* Chaingang.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Chaingang.h; sourceTree = "<group>"; };
 		C59782B41A423DB600C3139A /* ChaingangTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChaingangTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C59782BA1A423DB600C3139A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C59782BB1A423DB600C3139A /* ChaingangTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChaingangTests.swift; sourceTree = "<group>"; };
+		C59782C51A423DDE00C3139A /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
+		C59782C71A423E0C00C3139A /* PromiseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseTests.swift; sourceTree = "<group>"; };
+		C59782C91A423F7000C3139A /* LlamaKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LlamaKit.framework; path = Carthage.build/iOS/LlamaKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +93,7 @@
 		C59782AB1A423DB600C3139A /* Chaingang */ = {
 			isa = PBXGroup;
 			children = (
+				C59782C51A423DDE00C3139A /* Promise.swift */,
 				C59782AE1A423DB600C3139A /* Chaingang.h */,
 				C59782AC1A423DB600C3139A /* Supporting Files */,
 			);
@@ -91,7 +111,7 @@
 		C59782B81A423DB600C3139A /* ChaingangTests */ = {
 			isa = PBXGroup;
 			children = (
-				C59782BB1A423DB600C3139A /* ChaingangTests.swift */,
+				C59782C71A423E0C00C3139A /* PromiseTests.swift */,
 				C59782B91A423DB600C3139A /* Supporting Files */,
 			);
 			path = ChaingangTests;
@@ -213,6 +233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C59782C61A423DDE00C3139A /* Promise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,7 +241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C59782BC1A423DB600C3139A /* ChaingangTests.swift in Sources */,
+				C59782C81A423E0C00C3139A /* PromiseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
