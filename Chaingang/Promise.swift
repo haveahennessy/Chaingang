@@ -30,12 +30,12 @@ public class Promise<T> {
     }
 
     // Kept promise.
-    public func deliver(value: T) {
+    public func deliver(#value: T) {
         self.deliver(Result.Success(Box(value)))
     }
 
     // Broken promise.
-    public func deliver(error: ErrorType) {
+    public func deliver(#error: ErrorType) {
         self.deliver(Result.Failure(error))
     }
 
@@ -87,11 +87,19 @@ extension Promise {
         dispatch_async(self.queue, {
             switch self.deref() {
             case .Success(let box) :
-                chained.deliver(body(box.unbox))
+                chained.deliver(value: body(box.unbox))
             case .Failure(let error) :
                 chained.deliver(.Failure(error))
             }
 
+        })
+        return chained
+    }
+
+    public func map<U>(body: (Result<T>) -> Result<U>) -> Promise<U> {
+        let chained = Promise<U>(self.queue)
+        dispatch_async(self.queue, {
+            chained.deliver(body(self.deref()))
         })
         return chained
     }
@@ -103,7 +111,7 @@ extension Promise {
             case .Success(let box) :
                 chained.deliver(body(box.unbox).deref())
             case .Failure(let error) :
-                chained.deliver(error)
+                chained.deliver(error: error)
             }
         })
         return chained
