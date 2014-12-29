@@ -24,6 +24,10 @@ public class Promise<T> {
         self.queue = queue
     }
 
+    public init(_ result: Result<T>) {
+        self.deliver(result)
+    }
+
     // Has this promise been delivered?
     public func isRealized() -> Bool {
         return self.realized
@@ -39,8 +43,8 @@ public class Promise<T> {
         self.deliver(Result.Failure(error))
     }
 
-    // Delivery helper.
-    func deliver(value: Result<T>) {
+    // Deliver a result.
+    public func deliver(value: Result<T>) {
         condition.lock()
         if !self.realized {
             self.value = value
