@@ -7,6 +7,7 @@
 //
 
 import Chaingang
+import LlamaKit
 import XCTest
 
 class promiseTestCase: XCTestCase {
@@ -28,7 +29,7 @@ class promiseTestCase: XCTestCase {
     func testWaitForDelivery() {
         let p = Promise<AnyObject>()
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () -> Void in
-            sleep(5)
+            sleep(4)
             p.deliver(value: 5)
         })
 
@@ -37,13 +38,29 @@ class promiseTestCase: XCTestCase {
         XCTAssert(p.isRealized(), "")
     }
 
-    func testComposition() {
+    func testMapComposition() {
         let intPromise = Promise<AnyObject>()
         let stringPromise = intPromise.map({ (x: AnyObject) -> String in
             return String(x as Int)
         })
         let doubledPromise = stringPromise.map({ (s: String) -> Int in
             return s.toInt()! * 2
+        })
+        XCTAssert(!stringPromise.isRealized(), "")
+        XCTAssert(!doubledPromise.isRealized(), "")
+        intPromise.deliver(value: 24)
+
+        XCTAssert(doubledPromise.deref().value()? == 48, "")
+    }
+
+    func testFlatMapComposition() {
+        let intPromise = Promise<AnyObject>()
+        let stringPromise = intPromise.flatMap({ (x: AnyObject) -> Promise<String> in
+            sleep(4)
+            return Promise(success(String(x as Int)))
+        })
+        let doubledPromise = stringPromise.flatMap({ (s: String) -> Promise<Int> in
+            return Promise(success(s.toInt()! * 2))
         })
         XCTAssert(!stringPromise.isRealized(), "")
         XCTAssert(!doubledPromise.isRealized(), "")

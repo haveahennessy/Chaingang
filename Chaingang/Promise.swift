@@ -12,7 +12,8 @@ import LlamaKit
 
 public class Promise<T> {
     let condition = NSCondition()
-    let queue = dispatch_queue_create("org.hh.promise", DISPATCH_QUEUE_SERIAL)
+    let queue = dispatch_queue_create("org.hh.promise", DISPATCH_QUEUE_CONCURRENT)
+    var callbacks: [() -> Void] = []
     var realized: Bool = false
     var value: Result<T> = Result.Failure(NSError())
 
@@ -30,7 +31,10 @@ public class Promise<T> {
 
     // Has this promise been delivered?
     public func isRealized() -> Bool {
-        return self.realized
+        condition.lock()
+        let realized = self.realized
+        condition.unlock()
+        return realized
     }
 
     // Kept promise.
@@ -50,6 +54,13 @@ public class Promise<T> {
             self.value = value
             self.realized = true
             condition.broadcast()
+
+            dispatch_barrier_async(self.queue, {
+                for callback in self.callbacks {
+                    callback()
+                }
+                self.callbacks = []
+            })
         }
         condition.unlock()
     }
@@ -79,45 +90,57 @@ public class Promise<T> {
     }
 }
 
-// Some functional combinators.
-// --
-// Haters - I'm aware that blocking threads is a crime against humanity. The intended environment for this implementation is not one in which 1000s
-// or even 100s of promise chains exist at a given time, and so in this case blocking is excusable.
-// Non-haters - Don't use this if you intend to have hundreds of promise chains active at any given moment.
-
 extension Promise {
-    public func map<U>(body: (T) -> U) -> Promise<U> {
-        let chained = Promise<U>(self.queue)
+    // Callback helper
+    func onRealization(callback: Result<T> -> Void) {
         dispatch_async(self.queue, {
-            switch self.deref() {
-            case .Success(let box) :
-                chained.deliver(value: body(box.unbox))
-            case .Failure(let error) :
-                chained.deliver(.Failure(error))
+            if self.isRealized() {
+                callback(self.value)
+                return
             }
-
+            self.callbacks.append({
+                callback(self.value)
+            })
         })
+    }
+
+    // Map functional combinator
+    public func map<U>(body: (T) -> U) -> Promise<U> {
+        let chained = Promise<U>()
+
+        self.onRealization( { result in
+            chained.deliver(result.map(body))
+        })
+
         return chained
     }
 
     public func map<U>(body: (Result<T>) -> Result<U>) -> Promise<U> {
-        let chained = Promise<U>(self.queue)
-        dispatch_async(self.queue, {
-            chained.deliver(body(self.deref()))
+        let chained = Promise<U>()
+
+        self.onRealization( { result in
+            chained.deliver(body(result))
         })
+
         return chained
     }
 
+    // Flatmap functional combinator
     public func flatMap<U>(body: (T) -> Promise<U>) -> Promise<U> {
-        let chained = Promise<U>(self.queue)
-        dispatch_async(self.queue, {
-            switch self.deref() {
+        let chained = Promise<U>()
+
+        self.onRealization({ result in
+            switch result {
             case .Success(let box) :
-                chained.deliver(body(box.unbox).deref())
+                let p = body(box.unbox)
+                p.onRealization({ tmp in
+                    chained.deliver(tmp)
+                })
             case .Failure(let error) :
                 chained.deliver(error: error)
             }
         })
+
         return chained
     }
 }
