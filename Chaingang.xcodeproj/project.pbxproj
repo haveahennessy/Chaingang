@@ -7,14 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C5869E541A5DA4C800E8B433 /* LlamaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5869E531A5DA4C800E8B433 /* LlamaKit.framework */; };
-		C5869E551A5DA4DA00E8B433 /* LlamaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5869E531A5DA4C800E8B433 /* LlamaKit.framework */; };
-		C5869E561A5DA4E000E8B433 /* Chaingang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59782A91A423DB600C3139A /* Chaingang.framework */; };
-		C5869E571A5DA4EA00E8B433 /* LlamaKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C5869E531A5DA4C800E8B433 /* LlamaKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C5869E581A5DA4ED00E8B433 /* Chaingang.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C59782A91A423DB600C3139A /* Chaingang.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C5869E4E1A5CE15100E8B433 /* LlamaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59782C91A423F7000C3139A /* LlamaKit.framework */; };
 		C59782AF1A423DB600C3139A /* Chaingang.h in Headers */ = {isa = PBXBuildFile; fileRef = C59782AE1A423DB600C3139A /* Chaingang.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C59782B51A423DB600C3139A /* Chaingang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59782A91A423DB600C3139A /* Chaingang.framework */; };
 		C59782C61A423DDE00C3139A /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59782C51A423DDE00C3139A /* Promise.swift */; };
 		C59782C81A423E0C00C3139A /* PromiseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59782C71A423E0C00C3139A /* PromiseTests.swift */; };
+		C59782CB1A423FA400C3139A /* LlamaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59782C91A423F7000C3139A /* LlamaKit.framework */; };
+		C59782CD1A423FBE00C3139A /* LlamaKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C59782C91A423F7000C3139A /* LlamaKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,15 +33,13 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C5869E581A5DA4ED00E8B433 /* Chaingang.framework in CopyFiles */,
-				C5869E571A5DA4EA00E8B433 /* LlamaKit.framework in CopyFiles */,
+				C59782CD1A423FBE00C3139A /* LlamaKit.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C5869E531A5DA4C800E8B433 /* LlamaKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LlamaKit.framework; path = Carthage/Build/iOS/LlamaKit.framework; sourceTree = "<group>"; };
 		C59782A91A423DB600C3139A /* Chaingang.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Chaingang.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C59782AD1A423DB600C3139A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C59782AE1A423DB600C3139A /* Chaingang.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Chaingang.h; sourceTree = "<group>"; };
@@ -50,6 +47,7 @@
 		C59782BA1A423DB600C3139A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C59782C51A423DDE00C3139A /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
 		C59782C71A423E0C00C3139A /* PromiseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseTests.swift; sourceTree = "<group>"; };
+		C59782C91A423F7000C3139A /* LlamaKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LlamaKit.framework; path = Carthage/Build/iOS/LlamaKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5869E541A5DA4C800E8B433 /* LlamaKit.framework in Frameworks */,
+				C5869E4E1A5CE15100E8B433 /* LlamaKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,8 +63,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5869E561A5DA4E000E8B433 /* Chaingang.framework in Frameworks */,
-				C5869E551A5DA4DA00E8B433 /* LlamaKit.framework in Frameworks */,
+				C59782B51A423DB600C3139A /* Chaingang.framework in Frameworks */,
+				C59782CB1A423FA400C3139A /* LlamaKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,7 +74,7 @@
 		C597829F1A423DB600C3139A = {
 			isa = PBXGroup;
 			children = (
-				C5869E531A5DA4C800E8B433 /* LlamaKit.framework */,
+				C59782C91A423F7000C3139A /* LlamaKit.framework */,
 				C59782AB1A423DB600C3139A /* Chaingang */,
 				C59782B81A423DB600C3139A /* ChaingangTests */,
 				C59782AA1A423DB600C3139A /* Products */,
@@ -352,6 +350,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage.build/iOS",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Chaingang/Info.plist;
@@ -371,6 +370,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage.build/iOS",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Chaingang/Info.plist;
@@ -387,7 +387,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage.build/iOS",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -405,7 +405,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage.build/iOS",
 				);
 				INFOPLIST_FILE = ChaingangTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
