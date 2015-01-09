@@ -10,7 +10,7 @@ import LlamaKit
 
 public enum State<T> {
     case Unrealized
-    case Realized(Result<T>)
+    case Realized(Result<T, NSError>)
     case Cancelled
 }
 
@@ -21,7 +21,7 @@ public class Promise<T> {
     let queue = dispatch_queue_create("org.hh.promise", DISPATCH_QUEUE_CONCURRENT)
     var callbacks: [() -> Void] = []
     var state: State<T> = State.Unrealized
-    lazy var unwrapped: Result<T> = self.deref(NSDate.distantFuture() as NSDate)
+    lazy var unwrapped: Result<T, NSError> = self.deref(NSDate.distantFuture() as NSDate)
 
     public init() { }
 
@@ -31,7 +31,7 @@ public class Promise<T> {
         self.queue = queue
     }
 
-    public init(_ result: Result<T>) {
+    public init(_ result: Result<T, NSError>) {
         self.deliver(result)
     }
 
@@ -57,16 +57,16 @@ public class Promise<T> {
 
     // Kept promise.
     public func deliver(#value: T) {
-        self.deliver(Result.Success(Box(value)))
+        self.deliver(success(value))
     }
 
     // Broken promise.
-    public func deliver(#error: ErrorType) {
-        self.deliver(Result.Failure(error))
+    public func deliver(#error: NSError) {
+        self.deliver(failure(error))
     }
 
     // Deliver a result.
-    public func deliver(value: Result<T>) {
+    public func deliver(value: Result<T, NSError>) {
         self.transition(State.Realized(value))
     }
 
@@ -104,12 +104,12 @@ public class Promise<T> {
     }
 
     // Dereference the promise. Caller will be blocked until promise kept or broken.
-    public func deref() -> Result<T> {
+    public func deref() -> Result<T, NSError> {
         return self.unwrapped
     }
 
     // Dereference the promise. Caller will be blocked until promise kept or broken, or the specified timeout expires.
-    public func deref(timeout: NSTimeInterval) -> Result<T> {
+    public func deref(timeout: NSTimeInterval) -> Result<T, NSError> {
         let start = NSDate()
         let until = start.dateByAddingTimeInterval(timeout)
 
@@ -117,7 +117,7 @@ public class Promise<T> {
     }
 
     // Dereferencing helper. Alternative form for dereference with timeout.
-    public func deref(until: NSDate) -> Result<T> {
+    public func deref(until: NSDate) -> Result<T, NSError> {
         condition.lock()
         switch self.state {
         case .Unrealized :
@@ -137,7 +137,7 @@ public class Promise<T> {
 
 extension Promise {
     // Callback helper
-    func onCompletion(callback: Result<T> -> Void) {
+    func onCompletion(callback: Result<T, NSError> -> Void) {
         dispatch_async(self.queue, {
             // No locking here. The dispatch barrier in the transition method above
             // provides protection against lost/uncalled callbacks.
@@ -166,7 +166,7 @@ extension Promise {
         return chained
     }
 
-    public func mapResult<U>(body: (Result<T>) -> Result<U>) -> Promise<U> {
+    public func mapResult<U>(body: (Result<T, NSError>) -> Result<U, NSError>) -> Promise<U> {
         let chained = Promise<U>()
 
         self.onCompletion( { result in
@@ -188,7 +188,7 @@ extension Promise {
                     chained.deliver(tmp)
                 })
             case .Failure(let error) :
-                chained.deliver(error: error)
+                chained.deliver(error: error.unbox)
             }
         })
 
