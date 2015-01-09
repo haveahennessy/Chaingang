@@ -67,7 +67,8 @@ public class Promise<T, E> {
             switch to {
             case .Unrealized :
                 // This is an error. Unrealized is the start state and can't be transition into.
-                break
+                condition.unlock()
+
             case .Realized(let value) :
                 self.state = State.Realized(value)
 
@@ -79,12 +80,9 @@ public class Promise<T, E> {
                     }
                     self.callbacks.removeAll(keepCapacity: false)
                 })
-
-            default :
-                condition.unlock()
             }
         case .Realized(_) :
-            break
+            condition.unlock()
         }
     }
 
