@@ -12,12 +12,12 @@ import XCTest
 
 class promiseTestCase: XCTestCase {
     func testInit() {
-        let p = Promise<AnyObject>()
+        let p = Promise<AnyObject, NSError>()
         XCTAssert(!p.isRealized(), "")
     }
 
     func testDelivered() {
-        let p = Promise<AnyObject>()
+        let p = Promise<AnyObject, NSError>()
         p.deliver(value: 5)
         XCTAssert(p.isRealized(), "")
         XCTAssert(p.deref().value as Int == 5, "")
@@ -27,7 +27,7 @@ class promiseTestCase: XCTestCase {
     }
 
     func testWaitForDelivery() {
-        let p = Promise<AnyObject>()
+        let p = Promise<AnyObject, NSError>()
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () -> Void in
             sleep(4)
             p.deliver(value: 5)
@@ -39,12 +39,12 @@ class promiseTestCase: XCTestCase {
     }
 
     func testMapComposition() {
-        let intPromise = Promise<AnyObject>()
-        let stringPromise = intPromise.map({ (x: AnyObject) -> String in
-            return String(x as Int)
+        let intPromise = Promise<AnyObject, NSError>()
+        let stringPromise = intPromise.map({ x -> Result<String, NSError> in
+            return x.map({ xform in return String(xform as Int) })
         })
-        let doubledPromise = stringPromise.map({ (s: String) -> Int in
-            return s.toInt()! * 2
+        let doubledPromise = stringPromise.map({ s -> Result<Int, NSError> in
+            return s.map({ xform in return xform.toInt()! * 2 })
         })
         XCTAssert(!stringPromise.isRealized(), "")
         XCTAssert(!doubledPromise.isRealized(), "")
@@ -54,13 +54,17 @@ class promiseTestCase: XCTestCase {
     }
 
     func testFlatMapComposition() {
-        let intPromise = Promise<AnyObject>()
-        let stringPromise = intPromise.flatMap({ (x: AnyObject) -> Promise<String> in
+        let intPromise = Promise<AnyObject, NSError>()
+        let stringPromise = intPromise.flatMap({ (x: Result<AnyObject, NSError>) -> Promise<String, NSError> in
             sleep(4)
-            return Promise(success(String(x as Int)))
+            return Promise(x.map( { xform in
+                return String(xform as Int)
+            }))
         })
-        let doubledPromise = stringPromise.flatMap({ (s: String) -> Promise<Int> in
-            return Promise(success(s.toInt()! * 2))
+        let doubledPromise = stringPromise.flatMap({ (s: Result<String, NSError>) -> Promise<Int, NSError> in
+            return Promise(s.map( { xform in
+                xform.toInt()! * 2
+            }))
         })
         XCTAssert(!stringPromise.isRealized(), "")
         XCTAssert(!doubledPromise.isRealized(), "")

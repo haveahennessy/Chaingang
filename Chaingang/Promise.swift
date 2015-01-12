@@ -8,20 +8,19 @@
 
 import LlamaKit
 
-public enum State<T> {
+public enum State<T, E> {
     case Unrealized
-    case Realized(Result<T, NSError>)
-    case Cancelled
+    case Realized(Result<T, E>)
 }
 
 // Clojure Style promises.
 
-public class Promise<T> {
+public class Promise<T, E> {
     let condition = NSCondition()
     let queue = dispatch_queue_create("org.hh.promise", DISPATCH_QUEUE_CONCURRENT)
     var callbacks: [() -> Void] = []
-    var state: State<T> = State.Unrealized
-    lazy var unwrapped: Result<T, NSError> = self.deref(NSDate.distantFuture() as NSDate)
+    var state: State<T, E> = State.Unrealized
+    lazy var unwrapped: Result<T, E> = self.deref(NSDate.distantFuture() as NSDate)
 
     public init() { }
 
@@ -31,85 +30,69 @@ public class Promise<T> {
         self.queue = queue
     }
 
-    public init(_ result: Result<T, NSError>) {
+    public init(_ result: Result<T, E>) {
         self.deliver(result)
     }
 
     // Has this promise been delivered?
     public func isRealized() -> Bool {
         switch self.state {
-        case .Realized(_) :
-            return true
-        default :
+        case .Unrealized :
             return false
+        default :
+            return true
         }
     }
 
-    // Has this promise been Cancelled?
-    public func isCancelled() -> Bool {
-        switch self.state {
-        case .Cancelled :
-            return true
-        default :
-            return false
-        }
-    }
-
-    // Kept promise.
+    // Kept promise helper.
     public func deliver(#value: T) {
         self.deliver(success(value))
     }
 
-    // Broken promise.
-    public func deliver(#error: NSError) {
+    // Broken promise helper.
+    public func deliver(#error: E) {
         self.deliver(failure(error))
     }
 
     // Deliver a result.
-    public func deliver(value: Result<T, NSError>) {
+    public func deliver(value: Result<T, E>) {
         self.transition(State.Realized(value))
     }
 
-    // Cancel promise.
-    public func cancel() {
-        self.transition(State.Cancelled)
-    }
-
-    func transition(to: State<T>) {
+    // Promise state transitions
+    func transition(to: State<T, E>) {
         condition.lock()
         switch self.state {
         case .Unrealized :
             switch to {
             case .Unrealized :
                 // This is an error. Unrealized is the start state and can't be transition into.
-                break
+                condition.unlock()
+
             case .Realized(let value) :
                 self.state = State.Realized(value)
-            case .Cancelled :
-                self.state = State.Cancelled
+
+                condition.broadcast()
+                condition.unlock()
+                dispatch_barrier_async(self.queue, {
+                    for callback in self.callbacks {
+                        callback()
+                    }
+                    self.callbacks.removeAll(keepCapacity: false)
+                })
             }
-
-            condition.broadcast()
-            condition.unlock()
-            dispatch_barrier_async(self.queue, {
-                for callback in self.callbacks {
-                    callback()
-                }
-                self.callbacks.removeAll(keepCapacity: false)
-            })
-
-        default :
+        case .Realized(_) :
             condition.unlock()
         }
     }
 
     // Dereference the promise. Caller will be blocked until promise kept or broken.
-    public func deref() -> Result<T, NSError> {
+    public func deref() -> Result<T, E> {
         return self.unwrapped
     }
 
     // Dereference the promise. Caller will be blocked until promise kept or broken, or the specified timeout expires.
-    public func deref(timeout: NSTimeInterval) -> Result<T, NSError> {
+    public func deref(timeout: NSTimeInterval) -> Result<T, E> {
         let start = NSDate()
         let until = start.dateByAddingTimeInterval(timeout)
 
@@ -117,7 +100,7 @@ public class Promise<T> {
     }
 
     // Dereferencing helper. Alternative form for dereference with timeout.
-    public func deref(until: NSDate) -> Result<T, NSError> {
+    public func deref(until: NSDate) -> Result<T, E> {
         condition.lock()
         switch self.state {
         case .Unrealized :
@@ -128,17 +111,14 @@ public class Promise<T> {
         case .Realized(let value) :
             condition.unlock()
             return value
-        case .Cancelled :
-            condition.unlock()
-            return failure("Cancelled")
         }
     }
 }
 
 extension Promise {
     // Callback helper
-    func onCompletion(callback: Result<T, NSError> -> Void) {
-        dispatch_async(self.queue, {
+    func onCompletion(callback: Result<T, E> -> Void) {
+        dispatch_barrier_async(self.queue, {
             // No locking here. The dispatch barrier in the transition method above
             // provides protection against lost/uncalled callbacks.
             switch self.state {
@@ -149,25 +129,13 @@ extension Promise {
                 self.callbacks.append({
                     callback(self.unwrapped)
                 })
-            case .Cancelled :
-                callback(failure("Cancelled"))
             }
         })
     }
 
     // Map functional combinator
-    public func map<U>(body: (T) -> U) -> Promise<U> {
-        let chained = Promise<U>()
-
-        self.onCompletion( { result in
-            chained.deliver(result.map(body))
-        })
-
-        return chained
-    }
-
-    public func mapResult<U>(body: (Result<T, NSError>) -> Result<U, NSError>) -> Promise<U> {
-        let chained = Promise<U>()
+    public func map<U, F>(body: (Result<T, E>) -> Result<U, F>) -> Promise<U, F> {
+        let chained = Promise<U, F>()
 
         self.onCompletion( { result in
             chained.deliver(body(result))
@@ -177,19 +145,13 @@ extension Promise {
     }
 
     // Flatmap functional combinator
-    public func flatMap<U>(body: (T) -> Promise<U>) -> Promise<U> {
-        let chained = Promise<U>()
+    public func flatMap<U, F>(body: (Result<T, E>) -> Promise<U, F>) -> Promise<U, F> {
+        let chained = Promise<U, F>()
 
         self.onCompletion({ result in
-            switch result {
-            case .Success(let box) :
-                let p = body(box.unbox)
-                p.onCompletion({ tmp in
-                    chained.deliver(tmp)
-                })
-            case .Failure(let error) :
-                chained.deliver(error: error.unbox)
-            }
+            body(result).onCompletion({ bodyResult in
+                chained.deliver(bodyResult)
+            })
         })
 
         return chained
