@@ -68,8 +68,23 @@ let result = promise.deref()
 Note that calling ```deref()``` on an unrealized Promise, will block the calling thread until another thread delivers on the Promise. We can check if a promise has been realized with ```isRealized()```.
 
 ```
-promise.isRealized()   // Returns true in this case.
+promise.isRealized()    // Returns true in this case.
 ```
+
+Promises can be chained using ```map``` and ```flatMap``` functional combinators.  
+```
+let count = promise.map { (stringResult: Result<String, NSError>) -> Result<Int, NSError> in
+    return stringResult.map { transform in
+        return transform.componentsSeparatedByString(" ").count
+    }
+}
+```
+In this case ```count``` is inferred to be a Promise<Int, NSError>. Since ```promise``` has been realized, the closure we passed to ```map``` is called immediatelly with the Result contained by ```promise```. The Result returned by the colusre is then delivered to ```count```, which we can then dereference.
+
+```
+let countResult = count.deref()   // Success(2)
+```
+So that's Chaingang in a nutshell. If you've never seen them before, ```map``` and ```flatMap``` might look a little crazy, but once you've used it a handful of times, you'll be hooked and won't be able to stop!
 
 ## Contact
 
