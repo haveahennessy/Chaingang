@@ -29,7 +29,47 @@ Chaingang will be built as a dynamic framework, which can then be added to your 
 
 ## Usage
 
-Coming soon. Being based on clojure promises, it might be worth having a gander at [this](https://clojuredocs.org/clojure.core/promise).
+Being based on Clojure promises, it might be worth having a gander at [this](https://clojuredocs.org/clojure.core/promise).
+
+Chaingang promises derive their simplicity by wrapping Result types. Results are just like optionals but instead of having a None/nil case, they have a Failure case with an associated error value.  
+Chaingang uses [LlamaKit](https://github.com/LlamaKit/LlamaKit) for Result types. So be sure to check it out for more detail on what you can do with Results.
+
+Lets create a promise that will hold a String Result, and can fail with an NSError should things go bad.
+
+```
+let promise = Promise<String, NSError>()
+```
+
+We can realize this promise by delivering a value.
+
+```
+promise.deliver(value: "Some string.")
+```
+
+Or an error.
+
+```
+promise.deliver(error: NSError())
+```
+
+Or a result.
+
+```
+promise.deliver(success("A result."))
+promise.deliver(failure(NSError()))
+```
+
+Promises are only delivered once. Subsequent deliveries are ignored. In this case, the Promise holds a successful Result containing the string "Some string.". All of the other deliveries shown are ignored. This Result will be held for the lifetime of the promise, and can be accessed by ```deref()```
+
+```
+let result = promise.deref()
+```
+
+Note that calling ```deref()``` on an unrealized Promise, will block the calling thread until another thread delivers on the Promise. We can check if a promise has been realized with ```isRealized()```.
+
+```
+promise.isRealized()   // Returns true in this case.
+```
 
 ## Contact
 
