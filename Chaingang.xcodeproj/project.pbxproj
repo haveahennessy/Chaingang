@@ -7,9 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C55B2CFD1A6612390061B77F /* Chaingang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C55B2CF21A6612390061B77F /* Chaingang.framework */; };
+		C55B2D0B1A6612650061B77F /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59782C51A423DDE00C3139A /* Promise.swift */; };
+		C55B2D0D1A6613E10061B77F /* LlamaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C55B2D0C1A6613E10061B77F /* LlamaKit.framework */; };
+		C55B2D0E1A6614840061B77F /* PromiseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59782C71A423E0C00C3139A /* PromiseTests.swift */; };
+		C55B2D111A6614B90061B77F /* LlamaKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C55B2D0C1A6613E10061B77F /* LlamaKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C55B2D121A6614DA0061B77F /* LlamaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C55B2D0C1A6613E10061B77F /* LlamaKit.framework */; };
 		C5869E4E1A5CE15100E8B433 /* LlamaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59782C91A423F7000C3139A /* LlamaKit.framework */; };
 		C59782AF1A423DB600C3139A /* Chaingang.h in Headers */ = {isa = PBXBuildFile; fileRef = C59782AE1A423DB600C3139A /* Chaingang.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C59782B51A423DB600C3139A /* Chaingang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59782A91A423DB600C3139A /* Chaingang.framework */; };
+		C59782B51A423DB600C3139A /* Chaingang-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59782A91A423DB600C3139A /* Chaingang-iOS.framework */; };
 		C59782C61A423DDE00C3139A /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59782C51A423DDE00C3139A /* Promise.swift */; };
 		C59782C81A423E0C00C3139A /* PromiseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59782C71A423E0C00C3139A /* PromiseTests.swift */; };
 		C59782CB1A423FA400C3139A /* LlamaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59782C91A423F7000C3139A /* LlamaKit.framework */; };
@@ -17,6 +23,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		C55B2CFE1A6612390061B77F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C59782A01A423DB600C3139A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C55B2CF11A6612390061B77F;
+			remoteInfo = "Chaingang-Mac";
+		};
 		C59782B61A423DB600C3139A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C59782A01A423DB600C3139A /* Project object */;
@@ -27,6 +40,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		C55B2D0F1A6614950061B77F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C55B2D111A6614B90061B77F /* LlamaKit.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C59782CC1A423FB200C3139A /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -40,7 +63,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C59782A91A423DB600C3139A /* Chaingang.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Chaingang.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C55B2CF21A6612390061B77F /* Chaingang.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Chaingang.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C55B2CFC1A6612390061B77F /* Chaingang-MacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Chaingang-MacTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C55B2D0C1A6613E10061B77F /* LlamaKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LlamaKit.framework; path = Carthage/Build/Mac/LlamaKit.framework; sourceTree = "<group>"; };
+		C59782A91A423DB600C3139A /* Chaingang-iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Chaingang-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C59782AD1A423DB600C3139A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C59782AE1A423DB600C3139A /* Chaingang.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Chaingang.h; sourceTree = "<group>"; };
 		C59782B41A423DB600C3139A /* ChaingangTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChaingangTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,6 +77,23 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C55B2CEE1A6612390061B77F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C55B2D0D1A6613E10061B77F /* LlamaKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C55B2CF91A6612390061B77F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C55B2CFD1A6612390061B77F /* Chaingang.framework in Frameworks */,
+				C55B2D121A6614DA0061B77F /* LlamaKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C59782A51A423DB600C3139A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -63,7 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C59782B51A423DB600C3139A /* Chaingang.framework in Frameworks */,
+				C59782B51A423DB600C3139A /* Chaingang-iOS.framework in Frameworks */,
 				C59782CB1A423FA400C3139A /* LlamaKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,6 +117,7 @@
 		C597829F1A423DB600C3139A = {
 			isa = PBXGroup;
 			children = (
+				C55B2D0C1A6613E10061B77F /* LlamaKit.framework */,
 				C59782C91A423F7000C3139A /* LlamaKit.framework */,
 				C59782AB1A423DB600C3139A /* Chaingang */,
 				C59782B81A423DB600C3139A /* ChaingangTests */,
@@ -84,8 +128,10 @@
 		C59782AA1A423DB600C3139A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C59782A91A423DB600C3139A /* Chaingang.framework */,
+				C59782A91A423DB600C3139A /* Chaingang-iOS.framework */,
 				C59782B41A423DB600C3139A /* ChaingangTests.xctest */,
+				C55B2CF21A6612390061B77F /* Chaingang.framework */,
+				C55B2CFC1A6612390061B77F /* Chaingang-MacTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -128,6 +174,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		C55B2CEF1A6612390061B77F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C59782A61A423DB600C3139A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -139,9 +192,46 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		C59782A81A423DB600C3139A /* Chaingang */ = {
+		C55B2CF11A6612390061B77F /* Chaingang-Mac */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C59782BF1A423DB600C3139A /* Build configuration list for PBXNativeTarget "Chaingang" */;
+			buildConfigurationList = C55B2D051A6612390061B77F /* Build configuration list for PBXNativeTarget "Chaingang-Mac" */;
+			buildPhases = (
+				C55B2CED1A6612390061B77F /* Sources */,
+				C55B2CEE1A6612390061B77F /* Frameworks */,
+				C55B2CEF1A6612390061B77F /* Headers */,
+				C55B2CF01A6612390061B77F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Chaingang-Mac";
+			productName = "Chaingang-Mac";
+			productReference = C55B2CF21A6612390061B77F /* Chaingang.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		C55B2CFB1A6612390061B77F /* Chaingang-MacTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C55B2D081A6612390061B77F /* Build configuration list for PBXNativeTarget "Chaingang-MacTests" */;
+			buildPhases = (
+				C55B2CF81A6612390061B77F /* Sources */,
+				C55B2CF91A6612390061B77F /* Frameworks */,
+				C55B2CFA1A6612390061B77F /* Resources */,
+				C55B2D0F1A6614950061B77F /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C55B2CFF1A6612390061B77F /* PBXTargetDependency */,
+			);
+			name = "Chaingang-MacTests";
+			productName = "Chaingang-MacTests";
+			productReference = C55B2CFC1A6612390061B77F /* Chaingang-MacTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C59782A81A423DB600C3139A /* Chaingang-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C59782BF1A423DB600C3139A /* Build configuration list for PBXNativeTarget "Chaingang-iOS" */;
 			buildPhases = (
 				C59782A41A423DB600C3139A /* Sources */,
 				C59782A51A423DB600C3139A /* Frameworks */,
@@ -152,14 +242,14 @@
 			);
 			dependencies = (
 			);
-			name = Chaingang;
+			name = "Chaingang-iOS";
 			productName = Chaingang;
-			productReference = C59782A91A423DB600C3139A /* Chaingang.framework */;
+			productReference = C59782A91A423DB600C3139A /* Chaingang-iOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		C59782B31A423DB600C3139A /* ChaingangTests */ = {
+		C59782B31A423DB600C3139A /* Chaingang-iOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C59782C21A423DB600C3139A /* Build configuration list for PBXNativeTarget "ChaingangTests" */;
+			buildConfigurationList = C59782C21A423DB600C3139A /* Build configuration list for PBXNativeTarget "Chaingang-iOSTests" */;
 			buildPhases = (
 				C59782B01A423DB600C3139A /* Sources */,
 				C59782B11A423DB600C3139A /* Frameworks */,
@@ -171,7 +261,7 @@
 			dependencies = (
 				C59782B71A423DB600C3139A /* PBXTargetDependency */,
 			);
-			name = ChaingangTests;
+			name = "Chaingang-iOSTests";
 			productName = ChaingangTests;
 			productReference = C59782B41A423DB600C3139A /* ChaingangTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -185,6 +275,12 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Matt Isaacs";
 				TargetAttributes = {
+					C55B2CF11A6612390061B77F = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					C55B2CFB1A6612390061B77F = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
 					C59782A81A423DB600C3139A = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
@@ -205,13 +301,29 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C59782A81A423DB600C3139A /* Chaingang */,
-				C59782B31A423DB600C3139A /* ChaingangTests */,
+				C59782A81A423DB600C3139A /* Chaingang-iOS */,
+				C59782B31A423DB600C3139A /* Chaingang-iOSTests */,
+				C55B2CF11A6612390061B77F /* Chaingang-Mac */,
+				C55B2CFB1A6612390061B77F /* Chaingang-MacTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		C55B2CF01A6612390061B77F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C55B2CFA1A6612390061B77F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C59782A71A423DB600C3139A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -229,6 +341,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C55B2CED1A6612390061B77F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C55B2D0B1A6612650061B77F /* Promise.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C55B2CF81A6612390061B77F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C55B2D0E1A6614840061B77F /* PromiseTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C59782A41A423DB600C3139A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -248,14 +376,109 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		C55B2CFF1A6612390061B77F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C55B2CF11A6612390061B77F /* Chaingang-Mac */;
+			targetProxy = C55B2CFE1A6612390061B77F /* PBXContainerItemProxy */;
+		};
 		C59782B71A423DB600C3139A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C59782A81A423DB600C3139A /* Chaingang */;
+			target = C59782A81A423DB600C3139A /* Chaingang-iOS */;
 			targetProxy = C59782B61A423DB600C3139A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		C55B2D061A6612390061B77F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Chaingang/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		C55B2D071A6612390061B77F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = Chaingang/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		C55B2D091A6612390061B77F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Chaingang/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		C55B2D0A1A6612390061B77F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				INFOPLIST_FILE = Chaingang/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		C59782BD1A423DB600C3139A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -414,6 +637,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C55B2D051A6612390061B77F /* Build configuration list for PBXNativeTarget "Chaingang-Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C55B2D061A6612390061B77F /* Debug */,
+				C55B2D071A6612390061B77F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		C55B2D081A6612390061B77F /* Build configuration list for PBXNativeTarget "Chaingang-MacTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C55B2D091A6612390061B77F /* Debug */,
+				C55B2D0A1A6612390061B77F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		C59782A31A423DB600C3139A /* Build configuration list for PBXProject "Chaingang" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -423,7 +662,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C59782BF1A423DB600C3139A /* Build configuration list for PBXNativeTarget "Chaingang" */ = {
+		C59782BF1A423DB600C3139A /* Build configuration list for PBXNativeTarget "Chaingang-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C59782C01A423DB600C3139A /* Debug */,
@@ -432,7 +671,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C59782C21A423DB600C3139A /* Build configuration list for PBXNativeTarget "ChaingangTests" */ = {
+		C59782C21A423DB600C3139A /* Build configuration list for PBXNativeTarget "Chaingang-iOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C59782C31A423DB600C3139A /* Debug */,

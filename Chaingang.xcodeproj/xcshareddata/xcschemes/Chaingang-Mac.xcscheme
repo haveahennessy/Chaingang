@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C59782A81A423DB600C3139A"
-               BuildableName = "Chaingang.framework"
-               BlueprintName = "Chaingang"
+               BlueprintIdentifier = "C55B2CF11A6612390061B77F"
+               BuildableName = "Chaingang-Mac.framework"
+               BlueprintName = "Chaingang-Mac"
                ReferencedContainer = "container:Chaingang.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,9 +28,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C59782B31A423DB600C3139A"
-               BuildableName = "ChaingangTests.xctest"
-               BlueprintName = "ChaingangTests"
+               BlueprintIdentifier = "C55B2CFB1A6612390061B77F"
+               BuildableName = "Chaingang-MacTests.xctest"
+               BlueprintName = "Chaingang-MacTests"
                ReferencedContainer = "container:Chaingang.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,9 +46,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C59782B31A423DB600C3139A"
-               BuildableName = "ChaingangTests.xctest"
-               BlueprintName = "ChaingangTests"
+               BlueprintIdentifier = "C55B2CFB1A6612390061B77F"
+               BuildableName = "Chaingang-MacTests.xctest"
+               BlueprintName = "Chaingang-MacTests"
                ReferencedContainer = "container:Chaingang.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -56,9 +56,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C59782A81A423DB600C3139A"
-            BuildableName = "Chaingang.framework"
-            BlueprintName = "Chaingang"
+            BlueprintIdentifier = "C55B2CF11A6612390061B77F"
+            BuildableName = "Chaingang-Mac.framework"
+            BlueprintName = "Chaingang-Mac"
             ReferencedContainer = "container:Chaingang.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -75,9 +75,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C59782A81A423DB600C3139A"
-            BuildableName = "Chaingang.framework"
-            BlueprintName = "Chaingang"
+            BlueprintIdentifier = "C55B2CF11A6612390061B77F"
+            BuildableName = "Chaingang-Mac.framework"
+            BlueprintName = "Chaingang-Mac"
             ReferencedContainer = "container:Chaingang.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -93,9 +93,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C59782A81A423DB600C3139A"
-            BuildableName = "Chaingang.framework"
-            BlueprintName = "Chaingang"
+            BlueprintIdentifier = "C55B2CF11A6612390061B77F"
+            BuildableName = "Chaingang-Mac.framework"
+            BlueprintName = "Chaingang-Mac"
             ReferencedContainer = "container:Chaingang.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
