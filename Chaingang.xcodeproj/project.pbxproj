@@ -15,7 +15,7 @@
 		C55B2D121A6614DA0061B77F /* LlamaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C55B2D0C1A6613E10061B77F /* LlamaKit.framework */; };
 		C5869E4E1A5CE15100E8B433 /* LlamaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59782C91A423F7000C3139A /* LlamaKit.framework */; };
 		C59782AF1A423DB600C3139A /* Chaingang.h in Headers */ = {isa = PBXBuildFile; fileRef = C59782AE1A423DB600C3139A /* Chaingang.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C59782B51A423DB600C3139A /* Chaingang-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59782A91A423DB600C3139A /* Chaingang-iOS.framework */; };
+		C59782B51A423DB600C3139A /* Chaingang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59782A91A423DB600C3139A /* Chaingang.framework */; };
 		C59782C61A423DDE00C3139A /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59782C51A423DDE00C3139A /* Promise.swift */; };
 		C59782C81A423E0C00C3139A /* PromiseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59782C71A423E0C00C3139A /* PromiseTests.swift */; };
 		C59782CB1A423FA400C3139A /* LlamaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59782C91A423F7000C3139A /* LlamaKit.framework */; };
@@ -66,7 +66,7 @@
 		C55B2CF21A6612390061B77F /* Chaingang.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Chaingang.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C55B2CFC1A6612390061B77F /* Chaingang-MacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Chaingang-MacTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C55B2D0C1A6613E10061B77F /* LlamaKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LlamaKit.framework; path = Carthage/Build/Mac/LlamaKit.framework; sourceTree = "<group>"; };
-		C59782A91A423DB600C3139A /* Chaingang-iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Chaingang-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C59782A91A423DB600C3139A /* Chaingang.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Chaingang.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C59782AD1A423DB600C3139A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C59782AE1A423DB600C3139A /* Chaingang.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Chaingang.h; sourceTree = "<group>"; };
 		C59782B41A423DB600C3139A /* ChaingangTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChaingangTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,7 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C59782B51A423DB600C3139A /* Chaingang-iOS.framework in Frameworks */,
+				C59782B51A423DB600C3139A /* Chaingang.framework in Frameworks */,
 				C59782CB1A423FA400C3139A /* LlamaKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -128,7 +128,7 @@
 		C59782AA1A423DB600C3139A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C59782A91A423DB600C3139A /* Chaingang-iOS.framework */,
+				C59782A91A423DB600C3139A /* Chaingang.framework */,
 				C59782B41A423DB600C3139A /* ChaingangTests.xctest */,
 				C55B2CF21A6612390061B77F /* Chaingang.framework */,
 				C55B2CFC1A6612390061B77F /* Chaingang-MacTests.xctest */,
@@ -244,7 +244,7 @@
 			);
 			name = "Chaingang-iOS";
 			productName = Chaingang;
-			productReference = C59782A91A423DB600C3139A /* Chaingang-iOS.framework */;
+			productReference = C59782A91A423DB600C3139A /* Chaingang.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		C59782B31A423DB600C3139A /* Chaingang-iOSTests */ = {
@@ -578,7 +578,7 @@
 				INFOPLIST_FILE = Chaingang/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -597,7 +597,7 @@
 				INFOPLIST_FILE = Chaingang/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
