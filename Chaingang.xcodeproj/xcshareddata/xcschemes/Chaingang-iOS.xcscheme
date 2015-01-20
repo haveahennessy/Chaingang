@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C59782A81A423DB600C3139A"
-               BuildableName = "Chaingang-iOS.framework"
+               BuildableName = "Chaingang.framework"
                BlueprintName = "Chaingang-iOS"
                ReferencedContainer = "container:Chaingang.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C59782A81A423DB600C3139A"
-            BuildableName = "Chaingang-iOS.framework"
+            BuildableName = "Chaingang.framework"
             BlueprintName = "Chaingang-iOS"
             ReferencedContainer = "container:Chaingang.xcodeproj">
          </BuildableReference>
@@ -76,7 +76,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C59782A81A423DB600C3139A"
-            BuildableName = "Chaingang-iOS.framework"
+            BuildableName = "Chaingang.framework"
             BlueprintName = "Chaingang-iOS"
             ReferencedContainer = "container:Chaingang.xcodeproj">
          </BuildableReference>
@@ -94,7 +94,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C59782A81A423DB600C3139A"
-            BuildableName = "Chaingang-iOS.framework"
+            BuildableName = "Chaingang.framework"
             BlueprintName = "Chaingang-iOS"
             ReferencedContainer = "container:Chaingang.xcodeproj">
          </BuildableReference>
