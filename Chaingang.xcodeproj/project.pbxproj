@@ -69,7 +69,7 @@
 		C59782A91A423DB600C3139A /* Chaingang.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Chaingang.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C59782AD1A423DB600C3139A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C59782AE1A423DB600C3139A /* Chaingang.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Chaingang.h; sourceTree = "<group>"; };
-		C59782B41A423DB600C3139A /* ChaingangTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChaingangTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C59782B41A423DB600C3139A /* Chaingang-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Chaingang-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C59782BA1A423DB600C3139A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C59782C51A423DDE00C3139A /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
 		C59782C71A423E0C00C3139A /* PromiseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseTests.swift; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				C59782A91A423DB600C3139A /* Chaingang.framework */,
-				C59782B41A423DB600C3139A /* ChaingangTests.xctest */,
+				C59782B41A423DB600C3139A /* Chaingang-iOSTests.xctest */,
 				C55B2CF21A6612390061B77F /* Chaingang.framework */,
 				C55B2CFC1A6612390061B77F /* Chaingang-MacTests.xctest */,
 			);
@@ -263,7 +263,7 @@
 			);
 			name = "Chaingang-iOSTests";
 			productName = ChaingangTests;
-			productReference = C59782B41A423DB600C3139A /* ChaingangTests.xctest */;
+			productReference = C59782B41A423DB600C3139A /* Chaingang-iOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -453,7 +453,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = Chaingang/Info.plist;
+				INFOPLIST_FILE = ChaingangTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -471,7 +471,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
-				INFOPLIST_FILE = Chaingang/Info.plist;
+				INFOPLIST_FILE = ChaingangTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -644,6 +644,7 @@
 				C55B2D071A6612390061B77F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C55B2D081A6612390061B77F /* Build configuration list for PBXNativeTarget "Chaingang-MacTests" */ = {
 			isa = XCConfigurationList;
@@ -652,6 +653,7 @@
 				C55B2D0A1A6612390061B77F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C59782A31A423DB600C3139A /* Build configuration list for PBXProject "Chaingang" */ = {
 			isa = XCConfigurationList;
