@@ -16,21 +16,30 @@ public enum State<T, E> {
 // Clojure Style promises.
 
 public class Promise<T, E> {
-    let condition = NSCondition()
-    let queue = dispatch_queue_create("org.hh.promise", DISPATCH_QUEUE_CONCURRENT)
+    let condition: NSCondition
+    let queue: dispatch_queue_t
     var callbacks: [() -> Void] = []
-    var state: State<T, E> = State.Unrealized
-    lazy var unwrapped: Result<T, E> = self.deref(NSDate.distantFuture() as NSDate)
+    var state: State<T, E>
+    lazy var unwrapped: Result<T, E> = self.deref(NSDate.distantFuture() as! NSDate)
 
-    public init() { }
+    init(condition: NSCondition, queue: dispatch_queue_t, state: State<T,E>) {
+        self.condition = condition
+        self.queue = queue
+        self.state = state
+    }
+
+    public convenience init() {
+        self.init(dispatch_queue_create("org.hh.promise", DISPATCH_QUEUE_CONCURRENT))
+    }
 
     // Initialize using an alternative queue.
     // Avoid passing global queues, unless you're okay with the possibility of the queue being blocked for an unknown length of time.
-    public init(_ queue: dispatch_queue_t) {
-        self.queue = queue
+    public convenience init(_ queue: dispatch_queue_t) {
+        self.init(condition: NSCondition(), queue: queue, state: State.Unrealized)
     }
 
-    public init(_ result: Result<T, E>) {
+    public convenience init(_ result: Result<T, E>) {
+        self.init(dispatch_queue_create("org.hh.promise", DISPATCH_QUEUE_CONCURRENT))
         self.deliver(result)
     }
 
