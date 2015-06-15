@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Matt Isaacs. All rights reserved.
 //
 
-import LlamaKit
+import Result
 
 public enum State<T, E> {
     case Unrealized
@@ -17,12 +17,15 @@ public enum State<T, E> {
 
 public class Promise<T, E> {
     let condition = NSCondition()
-    let queue = dispatch_queue_create("org.hh.promise", DISPATCH_QUEUE_CONCURRENT)
+    let queue: dispatch_queue_t
     var callbacks: [() -> Void] = []
     var state: State<T, E> = State.Unrealized
     lazy var unwrapped: Result<T, E> = self.deref(NSDate.distantFuture() as NSDate)
 
-    public init() { }
+    public init()
+    {
+        self.queue = dispatch_queue_create("org.hh.promise", DISPATCH_QUEUE_CONCURRENT)
+    }
 
     // Initialize using an alternative queue.
     // Avoid passing global queues, unless you're okay with the possibility of the queue being blocked for an unknown length of time.
@@ -30,7 +33,8 @@ public class Promise<T, E> {
         self.queue = queue
     }
 
-    public init(_ result: Result<T, E>) {
+    public convenience init(_ result: Result<T, E>) {
+        self.init()
         self.deliver(result)
     }
 
@@ -45,13 +49,13 @@ public class Promise<T, E> {
     }
 
     // Kept promise helper.
-    public func deliver(#value: T) {
-        self.deliver(success(value))
+    public func deliver(value value: T) {
+        self.deliver(Result.success(value))
     }
 
     // Broken promise helper.
-    public func deliver(#error: E) {
-        self.deliver(failure(error))
+    public func deliver(error error: E) {
+        self.deliver(Result.failure(error))
     }
 
     // Deliver a result.
