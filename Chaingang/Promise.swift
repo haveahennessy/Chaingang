@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Matt Isaacs. All rights reserved.
 //
 
+import Foundation
 import Result
 
 public enum State<T, E> {
