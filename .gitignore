@@ -7,7 +7,5 @@
 *.xcworkspace/xcuserdata/
 .DS_Store
 build/
-Carthage/Checkouts
-!Carthage/Build/
-Carthage/Build/Mac
+Carthage/
 
